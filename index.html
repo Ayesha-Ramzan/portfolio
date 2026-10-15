@@ -815,8 +815,8 @@ document.addEventListener('DOMContentLoaded', function(){
       float g(vec2 d,vec2 r){return exp(-dot(d/r,d/r));}
       void main(){
         vec2 p=uv*S;
-        float wh=(1.-smoothstep(.55,1.15,length((p-vec2(234.,140.))/vec2(100.,112.))))*smoothstep(262.,212.,p.y);
-        vec2 q=p-vec2(234.,255.);float a=rot*wh;
+        float wh=(1.-smoothstep(.62,1.12,length((p-vec2(234.,150.))/vec2(128.,132.))))*smoothstep(292.,238.,p.y);
+        vec2 q=p-vec2(234.,272.);float a=rot*wh;
         vec2 off=head*wh+vec2(cos(a)*q.x-sin(a)*q.y,sin(a)*q.x+cos(a)*q.y)-q;
         off+=eye*min(g(p-vec2(210.,152.),vec2(8.6,5.)) + g(p-vec2(259.,152.),vec2(8.6,5.)),1.);
         gl_FragColor=texture2D(t,clamp((p-off)/S,0.,1.));
@@ -861,8 +861,8 @@ document.addEventListener('DOMContentLoaded', function(){
       const d = Math.hypot(dx, dy) || 1, k = Math.min(1, d / 160);
       etx = dx / d * k; ety = dy / d * k;
     }
-    ex = lerp(ex, etx, 0.22); ey = lerp(ey, ety, 0.22);
-    if (lookAt && !reduce) lookAt.draw(cx * 7, cy * 3.5, cx * 0.045, ex * 4.2, ey * 2.1);
+    ex = lerp(ex, etx, 0.38); ey = lerp(ey, ety, 0.38);
+    if (lookAt && !reduce) lookAt.draw(cx * 9, cy * 4, cx * 0.055, ex * 4.6, ey * 2.3);
   };
   let tx = 0, ty = 0, cx = 0, cy = 0, idle = 0;
   function target(){
@@ -874,7 +874,7 @@ document.addEventListener('DOMContentLoaded', function(){
   }
   function frame(){
     target();
-    cx = lerp(cx, tx, 0.06); cy = lerp(cy, ty, 0.06);
+    cx = lerp(cx, tx, 0.08); cy = lerp(cy, ty, 0.08);
     look();
     if (fine) {
       arrow.style.transform = `translate(${mx}px,${my}px)`;
