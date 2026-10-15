@@ -272,16 +272,29 @@ section{position:relative}
 .toast.on{transform:translate(-50%,0)}
 
 /* PRELOADER */
-.loader{position:fixed;inset:0;z-index:500;contain:strict;background:var(--aurora);color:#FAFAFA;display:flex;align-items:center;justify-content:center;transition:transform .95s cubic-bezier(.76,0,.24,1)}
+.loader{position:fixed;inset:0;z-index:500;contain:strict;background:radial-gradient(60% 50% at 50% 45%,#FFFFFF 0%,var(--bg) 70%);color:var(--ink);display:flex;align-items:center;justify-content:center;transition:transform .95s cubic-bezier(.76,0,.24,1)}
 .loader.out{transform:translateY(-100%)}
 .loader .l-logo{position:absolute;left:clamp(20px,4vw,56px);top:clamp(20px,4vw,48px)}
-.loader .l-logo b{display:block;font-family:var(--serif);font-style:italic;font-weight:600;font-size:26px;letter-spacing:-.02em}
-.loader .l-logo b i{color:#D61F2C;font-style:normal}
-.loader .l-logo small{display:block;margin-top:4px;font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:rgba(247,249,254,.45)}
-.l-word{font-family:var(--sans);font-weight:800;font-size:clamp(48px,8.5vw,128px);letter-spacing:-.05em;line-height:1;overflow:hidden;padding:.05em 0}
-.l-word span{display:inline-block;animation:lw .5s cubic-bezier(.2,.8,.2,1) both}
-@keyframes lw{from{transform:translateY(105%);opacity:0}to{transform:none;opacity:1}}
-.l-count{contain:layout paint;min-width:3.2ch;text-align:right;position:absolute;right:clamp(20px,4vw,56px);bottom:clamp(14px,3vw,36px);font-family:var(--sans);font-weight:800;font-size:clamp(60px,10vw,150px);letter-spacing:-.06em;line-height:1;font-variant-numeric:tabular-nums}
+.loader .l-logo b{display:block;font-size:26px;letter-spacing:-.02em}
+.loader .l-logo small{display:block;margin-top:4px;font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--muted)}
+.l-stage{position:relative;width:min(240px,56vw);aspect-ratio:1/1.05}
+.l-face{position:absolute;left:8%;right:8%;top:0;aspect-ratio:1;animation:type-bob .42s ease-in-out infinite alternate}
+.l-face img{width:100%;height:100%;filter:drop-shadow(0 18px 24px rgba(38,37,34,.14))}
+@keyframes type-bob{from{transform:translateY(0) rotate(-.6deg)}to{transform:translateY(3px) rotate(.6deg)}}
+.l-lap{position:absolute;left:10%;right:10%;bottom:0;z-index:2}
+.l-lid{height:clamp(84px,24vw,112px);border-radius:12px 12px 4px 4px;background:linear-gradient(135deg,#FFFFFF 0%,#ECEAE4 55%,#D9D6CE 100%);border:1px solid #D6D3CC;display:grid;place-items:center;box-shadow:0 18px 30px rgba(38,37,34,.16)}
+.l-lid b{width:36px;height:36px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:16px;font-weight:900;color:var(--rose);box-shadow:0 2px 8px rgba(38,37,34,.08)}
+.l-base{height:9px;margin:0 -9%;border-radius:0 0 10px 10px;background:linear-gradient(180deg,#CFCBC2,#A8A399)}
+.l-bubble{position:absolute;right:-6%;top:6%;z-index:3;display:flex;gap:5px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:16px 16px 16px 4px;box-shadow:0 10px 24px rgba(38,37,34,.1)}
+.l-bubble span{width:7px;height:7px;border-radius:50%;background:var(--ink);animation:dotty 1s ease-in-out infinite}
+.l-bubble span:nth-child(2){animation-delay:.15s}.l-bubble span:nth-child(3){animation-delay:.3s}
+@keyframes dotty{0%,60%,100%{transform:translateY(0);opacity:.35}30%{transform:translateY(-4px);opacity:1}}
+.l-code{position:absolute;left:-14%;top:30%;z-index:3;display:flex;flex-direction:column;gap:6px;padding:10px 12px;background:var(--ink);border-radius:12px;box-shadow:0 10px 24px rgba(38,37,34,.18)}
+.l-code i{display:block;height:5px;border-radius:3px;background:#fff;opacity:.85;transform-origin:left;animation:codeline 1.4s ease-in-out infinite}
+.l-code i:nth-child(1){width:46px}.l-code i:nth-child(2){width:30px;background:var(--rose);animation-delay:.25s}.l-code i:nth-child(3){width:38px;animation-delay:.5s}
+@keyframes codeline{0%{transform:scaleX(0)}45%,100%{transform:scaleX(1)}}
+.l-count{contain:layout paint;position:absolute;right:clamp(20px,4vw,56px);bottom:clamp(10px,3vw,30px);display:flex;align-items:flex-start;color:var(--rose);font-weight:900;font-size:clamp(70px,12vw,170px);letter-spacing:-.06em;line-height:.9;font-variant-numeric:tabular-nums}
+.l-count sup{font-size:.32em;margin:.12em 0 0 .06em;letter-spacing:0}
 .l-bar{position:absolute;left:0;bottom:0;height:3px;width:100%;transform:scaleX(0);transform-origin:left;will-change:transform;background:var(--red)}
 body.loading{overflow:hidden}
 
@@ -316,7 +329,7 @@ body.loading{overflow:hidden}
 body{font-family:var(--sans);-webkit-font-smoothing:antialiased}
 h1,h2,h3,.reveal-text,.contact h2{font-weight:900!important;letter-spacing:-.045em!important}
 .hero h1{line-height:.98}
-.wb-row,.stat b,.svc h3,.svc .n,.pcard .num,.typo b,.mq-track,.svc-marquee .t,.l-word,.l-count{font-family:var(--display);font-weight:900!important;letter-spacing:-.04em}
+.wb-row,.stat b,.svc h3,.svc .n,.pcard .num,.typo b,.mq-track,.svc-marquee .t,.l-count{font-family:var(--display);font-weight:900!important;letter-spacing:-.04em}
 .svc h3,.mq-track,.svc-marquee .t,.typo b{text-transform:none}
 .logo,.loader .l-logo b{font-family:var(--sans)!important;font-style:normal!important;font-weight:900!important;letter-spacing:-.04em!important}
 .logo b,.loader .l-logo b i{color:var(--rose)!important}
@@ -402,10 +415,35 @@ body.lite .in{opacity:1!important;transform:none!important}
 <body class="loading">
 <div class="loader" id="loader" aria-hidden="true">
   <div class="l-logo"><b>ayesha<i>.</i></b><small>AI Engineer &amp; Full-Stack Developer</small></div>
-  <div class="l-word" id="lWord"><span>IDEAS.</span></div>
-  <div class="l-count" id="lCount">000</div>
+  <div class="l-stage">
+    <div class="l-bubble"><span></span><span></span><span></span></div>
+    <div class="l-face"><img src="assets/avatar.webp" alt="" width="460" height="460"></div>
+    <div class="l-lap"><div class="l-lid"><b>a.</b></div><div class="l-base"></div></div>
+    <div class="l-code"><i></i><i></i><i></i></div>
+  </div>
+  <div class="l-count"><span id="lCount">0</span><sup>%</sup></div>
   <div class="l-bar" id="lBar"></div>
 </div>
+<script>
+(function(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* intro loader: starts immediately, before the rest of the page is ready */
+  const loader = document.getElementById('loader');
+  window.__loaderDone = new Promise(done => {
+    const finish = () => { loader.classList.add('out'); document.body.classList.remove('loading'); setTimeout(() => loader.remove(), 1000); setTimeout(done, 350); };
+    let seen = false; try { seen = sessionStorage.getItem('introSeen') === '1'; sessionStorage.setItem('introSeen', '1'); } catch {}
+    if (reduce || seen) { finish(); return; }
+    const cEl = document.getElementById('lCount'), bEl = document.getElementById('lBar');
+    const T = 1800, t0 = performance.now();
+    (function tick(now){
+      const p = Math.min(1, (now - t0) / T), e = 1 - Math.pow(1 - p, 3), n = Math.round(e * 100);
+      if (now - (tick.last || 0) > 60 || p === 1) { tick.last = now; cEl.textContent = n; } bEl.style.transform = 'scaleX(' + e + ')';
+      p < 1 ? requestAnimationFrame(tick) : setTimeout(finish, 250);
+    })(t0);
+  });
+
+})();
+</script>
 <svg class="arrow" viewBox="0 0 26 26" aria-hidden="true"><path d="M3 3 L23 13.6 L13.4 15.4 L8.6 23.4 Z" fill="#fff" stroke="#262522" stroke-width="2.4" stroke-linejoin="round"/></svg>
 
 <!-- icons -->
@@ -721,22 +759,7 @@ document.addEventListener('DOMContentLoaded', function(){
   const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
   const lerp = (a,b,t) => a + (b-a)*t;
 
-  /* preloader: words + counter, then slide up */
-  const loader = $('#loader');
-  const loaderDone = new Promise(done => {
-    const finish = () => { loader.classList.add('out'); document.body.classList.remove('loading'); setTimeout(() => loader.remove(), 1000); setTimeout(done, 350); };
-    let seen = false; try { seen = sessionStorage.getItem('introSeen') === '1'; sessionStorage.setItem('introSeen', '1'); } catch {}
-    if (reduce || seen) { finish(); return; }
-    const words = ['IDEAS.', 'CODE.', 'AI.', 'IMPACT.'], wEl = $('#lWord'), cEl = $('#lCount'), bEl = $('#lBar');
-    const T = 1500, t0 = performance.now(); let wi = 0;
-    (function tick(now){
-      const p = Math.min(1, (now - t0) / T), e = 1 - Math.pow(1 - p, 3), n = Math.round(e * 100);
-      if (now - (tick.last || 0) > 60 || p === 1) { tick.last = now; cEl.textContent = String(n).padStart(3, '0'); } bEl.style.transform = 'scaleX(' + e + ')';
-      const w = Math.min(words.length - 1, Math.floor(p * words.length));
-      if (w !== wi) { wi = w; wEl.innerHTML = '<span>' + words[w] + '</span>'; }
-      p < 1 ? requestAnimationFrame(tick) : setTimeout(finish, 250);
-    })(t0);
-  });
+  const loaderDone = window.__loaderDone;
 
   /* footer form: opens an email to Ayesha with the visitor's address */
   $('#fForm').addEventListener('submit', e => {
