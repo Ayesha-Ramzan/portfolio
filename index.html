@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500&display=swap"></noscript>
-<link rel="stylesheet" href="styles.css?v=22">
+<link rel="stylesheet" href="styles.css?v=23">
 </head>
 <body class="loading">
 <div class="loader" id="loader" aria-hidden="true">
@@ -476,8 +476,8 @@ document.addEventListener('DOMContentLoaded', function(){
       groups.forEach(({el, ws}) => {
         const r = el.getBoundingClientRect();
         if (r.bottom < -vh || r.top > vh * 2) return;
-        const n = Math.min(1, Math.max(0, (vh * 0.9 - r.top) / (vh * 0.55))) * ws.length;
-        ws.forEach((w, i) => w.style.setProperty('--t', Math.min(1, Math.max(0, n - i)).toFixed(3)));
+        const n = Math.min(1, Math.max(0, (vh * 0.95 - r.top) / (vh * 0.3))) * (ws.length + 2);
+        ws.forEach((w, i) => w.style.setProperty('--t', Math.min(1, Math.max(0, (n - i) / 2)).toFixed(3)));
       });
     };
     addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(paint); } }, {passive:true});

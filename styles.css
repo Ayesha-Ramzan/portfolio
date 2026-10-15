@@ -724,3 +724,5 @@ body.lite .faq-item{opacity:0;transform:translateY(24px);transition:opacity .7s 
 @keyframes tagfloat{0%,100%{transform:translate3d(var(--px),var(--py),0) rotateY(var(--ry)) rotateX(var(--rx))}50%{transform:translate3d(var(--px),calc(var(--py) - 9px),0) rotateY(var(--ry)) rotateX(var(--rx))}}
 @media (max-width:640px){.tag3d{font-size:12.5px;padding:9px 14px 9px 11px}.tag3d.t1{left:0}.tag3d.t2{right:0}}
 @media (prefers-reduced-motion:reduce){.tag3d{animation:none;transform:rotateY(var(--ry)) rotateX(var(--rx))}}
+/* lighter, quicker blur reveal: text always visible, just softly blurred until it sharpens */
+.reveal-text .w{opacity:calc(.55 + .45 * var(--t))!important;filter:blur(calc((1 - var(--t)) * 3px));color:color-mix(in srgb,var(--ink) calc(55% + var(--t) * 45%),#9A958D);transition:filter .25s ease,opacity .25s ease,color .25s ease}
