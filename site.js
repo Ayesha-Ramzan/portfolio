@@ -33,6 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {rootMargin:'0px 0px -8% 0px'});
   $$('.rv').forEach(el => io.observe(el));
 
+  /* videos play only while visible */
+  const vio = new IntersectionObserver(es => es.forEach(e => { const v = e.target; if (e.isIntersecting) { if (v.preload === 'none') v.preload = 'auto'; v.play().catch(() => {}); } else v.pause(); }), {threshold:.25});
+  $$('video[data-autoplay]').forEach(v => vio.observe(v));
+
+  /* services rows: tap to open on touch screens */
+  $$('.svc').forEach(s => s.addEventListener('click', () => { if (!fine) { $$('.svc').forEach(o => o !== s && o.classList.remove('on')); s.classList.toggle('on'); } }));
+
   /* count-up stats */
   const cio = new IntersectionObserver(es => es.forEach(e => {
     if (!e.isIntersecting) return; cio.unobserve(e.target);
