@@ -15,7 +15,7 @@
 
 <br>
 
-<a href="https://ayesha-ramzan.vercel.app"><img src="assets/preview.webp" alt="Portfolio preview" width="900"></a>
+<a href="https://ayesha-ramzan.vercel.app"><img src="assets/preview-2026-10.webp" alt="Portfolio preview" width="900"></a>
 
 </div>
 
