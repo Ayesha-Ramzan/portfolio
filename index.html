@@ -3,19 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ayesha Ramzan — AI & Full-Stack Developer</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#F8F7F2">
+<title>Ayesha Ramzan — AI Engineer &amp; Full-Stack Developer</title>
 <meta name="description" content="Ayesha Ramzan builds AI chatbots, voice assistants, WhatsApp automations and clean web apps with Python and JavaScript.">
 <meta property="og:title" content="Ayesha Ramzan — AI & Full-Stack Developer">
 <meta property="og:description" content="AI chatbots, WhatsApp automation, voice assistants and web apps.">
-<meta property="og:image" content="assets/avatar.png">
+<meta property="og:image" content="https://ayesha-ramzan.github.io/portfolio/assets/avatar.png">
+<meta property="og:url" content="https://ayesha-ramzan.github.io/portfolio/">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://ayesha-ramzan.github.io/portfolio/">
 <link rel="icon" href="assets/avatar.png">
+<link rel="preload" as="image" href="assets/avatar.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#F8F7F2; --bg-2:#EFEDE6; --card:#FFFFFF;
-  --ink:#262522; --ink-2:#3A3834; --muted:#6E6B66; --line:#E6E2D9;
+  --ink:#262522; --ink-2:#3A3834; --muted:#5C5954; --line:#E6E2D9;
   --rose:#D61F2C; --rose-d:#B3141F; --blush:#FCE4E7; --blush-2:#FDF1F2; --navy:#161211;
   --marker:#F4A9B8; --sage:#D61F2C; --lilac:#EFEDE6;
   --red:linear-gradient(180deg,#F04A4A 0%,#D61F2C 55%,#B3141F 100%);
@@ -39,9 +46,6 @@ img,video{display:block;max-width:100%}
 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
 .eyebrow::before{content:'';width:28px;height:1.5px;background:var(--rose)}
 
-/* grain */
-body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:200;opacity:.035;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
 /* cursor */
 .arrow{position:fixed;left:0;top:0;width:26px;height:26px;margin:-3px 0 0 -3px;pointer-events:none;z-index:301;filter:drop-shadow(0 2px 4px rgba(10,10,12,.25));will-change:transform;opacity:0;transition:opacity .2s}
@@ -88,10 +92,10 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:200;op
 /* HERO */
 .hero{position:relative;min-height:100svh;display:flex;align-items:center;padding:120px 0 70px;overflow:hidden}
 .hero-bg{position:absolute;inset:0;pointer-events:none;z-index:0}
-.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.75}
-.blob.b1{width:520px;height:520px;background:#F7E4E7;right:4%;top:8%}
-.blob.b2{width:380px;height:380px;background:#F1F0EC;left:-6%;bottom:2%}
-.blob.b3{width:260px;height:260px;background:#F3EDE4;right:38%;bottom:-6%}
+.blob{position:absolute;border-radius:50%;opacity:.85}
+.blob.b1{width:520px;height:520px;background:radial-gradient(circle,#F7E4E7 0%,transparent 68%);right:4%;top:8%}
+.blob.b2{width:380px;height:380px;background:radial-gradient(circle,#F1F0EC 0%,transparent 68%);left:-6%;bottom:2%}
+.blob.b3{width:260px;height:260px;background:radial-gradient(circle,#F3EDE4 0%,transparent 68%);right:38%;bottom:-6%}
 .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(24px,4vw,64px);align-items:center}
 .avail{display:inline-flex;align-items:center;gap:9px;padding:7px 14px 7px 10px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:13px;font-weight:600;color:var(--ink-2)}
 .dot{width:8px;height:8px;border-radius:50%;background:#5FB37A;box-shadow:0 0 0 0 rgba(95,179,122,.6);animation:ping 2s infinite}
@@ -100,7 +104,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:200;op
 .contact .it,.services .it{color:#fff;background:linear-gradient(transparent 56%,rgba(214,31,44,.75) 56%,rgba(214,31,44,.75) 90%,transparent 90%)}
 @keyframes ping{70%{box-shadow:0 0 0 8px rgba(95,179,122,0)}100%{box-shadow:0 0 0 0 rgba(95,179,122,0)}}
 .hero h1{font-family:var(--sans);font-weight:800;font-size:clamp(38px,4.6vw,68px);line-height:1.02;letter-spacing:-.04em;margin:20px 0 16px}
-.hero h1 .it{font-weight:600;letter-spacing:-.02em}
+
 .line{display:block;overflow:hidden;padding-bottom:.06em}
 .line>span{display:inline-block;white-space:nowrap}
 .hero-name{display:flex;align-items:center;gap:12px;font-size:15px;font-weight:700;margin-bottom:14px}
@@ -148,12 +152,12 @@ section{position:relative}
 .about-body p{font-size:clamp(15.5px,1.15vw,17.5px);line-height:1.75;color:var(--ink-2)}
 .about-body strong{color:var(--ink);font-weight:700}
 .reveal-text .w{opacity:.14;transition:opacity .2s}
-.reveal-text .it{font-weight:400}
+
 .about-meta{margin-top:30px;width:100%;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:left}
 .meta-card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:0 10px 30px rgba(10,10,12,.04);transition:transform .3s,box-shadow .3s}
 .meta-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(10,10,12,.08)}
 .meta-card .mi{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--blush-2);color:var(--rose);font-weight:800;font-size:13px;margin-bottom:14px}
-.meta-card h4{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.meta-card h3{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
 .meta-card p{font-weight:500;color:var(--ink-2);font-size:14.5px;line-height:1.6}
 
 /* WORKS */
@@ -280,13 +284,13 @@ body.loading{overflow:hidden}
 
 /* FOOTER */
 .footer{background:linear-gradient(180deg,#FFFFFF 0%,#F3F1EA 100%);border-top:1px solid var(--line);padding:clamp(56px,7vw,90px) 0 26px;position:relative;overflow:hidden}
-.footer::before{content:'';position:absolute;width:520px;height:520px;border-radius:50%;background:#F7E4E7;filter:blur(90px);right:-120px;top:-200px;opacity:.9}
+.footer::before{content:'';position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,#F7E4E7 0%,transparent 68%);right:-120px;top:-200px;opacity:.9}
 .f-grid{position:relative;display:grid;grid-template-columns:1.35fr 1fr 1.15fr 1.3fr 1.35fr}
 .f-col{padding:0 clamp(16px,2vw,32px)}
 .f-col + .f-col{border-left:1px solid var(--line)}
 .f-col:first-child{padding-left:0}
 .f-col:last-child{padding-right:0}
-.f-col h5{font-size:11.5px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--rose);margin-bottom:22px}
+.f-col .f-h{font-size:11.5px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--rose);margin-bottom:22px}
 .f-brand .logo{font-size:28px}
 .f-brand p{margin:14px 0 22px;color:var(--ink-2);font-size:14.5px;line-height:1.65}
 .f-brand .soc a{width:40px;height:40px}
@@ -313,14 +317,28 @@ h1,h2,h3,.reveal-text,.contact h2{font-weight:900!important;letter-spacing:-.045
 .svc h3,.mq-track,.svc-marquee .t,.typo b{text-transform:none}
 .logo,.loader .l-logo b{font-family:var(--sans)!important;font-style:normal!important;font-weight:900!important;letter-spacing:-.04em!important}
 .logo b,.loader .l-logo b i{color:var(--rose)!important}
-.eyebrow,.brand small,.f-col h5,.tags span{font-family:var(--mono);letter-spacing:.14em}
-.f-col h5{color:var(--ink)}
+.eyebrow,.brand small,.f-col .f-h,.tags span{font-family:var(--mono);letter-spacing:.14em}
+.f-col .f-h{color:var(--ink)}
 .brand b{font-weight:900;letter-spacing:.01em}
 /* numbered badges like the reference */
 .meta-card .mi{width:44px;height:44px;border-radius:13px;background:var(--ink);color:#fff;font-size:17px;font-weight:900;box-shadow:0 8px 18px rgba(38,37,34,.18)}
 .meta-card:nth-child(4) .mi{background:var(--red);box-shadow:0 8px 18px rgba(214,31,44,.3)}
 .pcard,.lcard,.meta-card{border-radius:26px}
 .pill.live{background:var(--blush-2);border-color:var(--blush);color:var(--rose-d)}
+
+/* utilities */
+.sprite{position:absolute;width:0;height:0;overflow:hidden}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.pill.static{cursor:default}
+.mt-14{margin-top:14px}.mt-20{margin-top:20px}
+.eyebrow.on-dark{color:rgba(250,246,241,.6)}
+.meta-card h3,.f-col .f-h{letter-spacing:.14em!important;font-weight:700!important}
+.meta-card h3{font-size:12px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.f-col .f-h{font-size:11.5px;text-transform:uppercase}
+.wave i:nth-child(1){animation-delay:-.1s}.wave i:nth-child(2){animation-delay:-.5s}.wave i:nth-child(3){animation-delay:-.3s}.wave i:nth-child(4){animation-delay:-.8s}.wave i:nth-child(5){animation-delay:-.2s}.wave i:nth-child(6){animation-delay:-.6s}.wave i:nth-child(7){animation-delay:-.4s}
+:focus-visible{outline:2px solid var(--rose);outline-offset:3px;border-radius:8px}
+.reveal-text .w{opacity:1!important;color:#8A867F;transition:color .25s}
+.reveal-text .w.lit{color:var(--ink)}
 
 /* RESPONSIVE */
 @media (max-width:1100px){
@@ -380,7 +398,7 @@ h1,h2,h3,.reveal-text,.contact h2{font-weight:900!important;letter-spacing:-.045
 <svg class="arrow" viewBox="0 0 26 26" aria-hidden="true"><path d="M3 3 L23 13.6 L13.4 15.4 L8.6 23.4 Z" fill="#fff" stroke="#262522" stroke-width="2.4" stroke-linejoin="round"/></svg>
 
 <!-- icons -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<svg class="sprite" width="0" height="0" aria-hidden="true">
   <symbol id="i-gh" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.29-1.69-1.29-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></symbol>
   <symbol id="i-in" viewBox="0 0 24 24"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11H3v-11Zm6.5 0h3.83v1.5h.06c.53-1 1.84-2.06 3.79-2.06 4.05 0 4.8 2.67 4.8 6.13v6.43h-4v-5.7c0-1.36-.03-3.11-1.9-3.11-1.9 0-2.19 1.48-2.19 3v5.81h-4v-12Z"/></symbol>
   <symbol id="i-ig" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M7 2.5h10A4.5 4.5 0 0 1 21.5 7v10a4.5 4.5 0 0 1-4.5 4.5H7A4.5 4.5 0 0 1 2.5 17V7A4.5 4.5 0 0 1 7 2.5Z"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/></symbol>
@@ -396,7 +414,7 @@ h1,h2,h3,.reveal-text,.contact h2{font-weight:900!important;letter-spacing:-.045
 <header class="nav" id="nav">
   <div class="nav-in">
     <a href="#top" class="brand" aria-label="Ayesha Ramzan — home">
-      <img src="assets/avatar.png" alt="" width="40" height="40">
+      <img src="assets/avatar.webp" alt="" width="40" height="40">
       <div><b>Ayesha Ramzan</b><small>AI Engineer</small></div>
     </a>
     <nav class="dock" aria-label="Main">
@@ -439,7 +457,7 @@ h1,h2,h3,.reveal-text,.contact h2{font-weight:900!important;letter-spacing:-.045
       <div class="ring-deco"></div>
       <span class="hint">move your cursor ↙</span>
       <div class="face" id="face">
-        <img src="assets/avatar.png" alt="Illustrated portrait of Ayesha Ramzan" width="460" height="460">
+        <img src="assets/avatar.webp" alt="Illustrated portrait of Ayesha Ramzan" width="460" height="460" fetchpriority="high">
               </div>
       <div class="laptop" id="laptop">
         <svg viewBox="0 0 400 210" aria-hidden="true">
@@ -479,16 +497,16 @@ h1,h2,h3,.reveal-text,.contact h2{font-weight:900!important;letter-spacing:-.045
 <section class="about" id="about">
   <div class="wrap about-grid">
     <span class="eyebrow">About me</span>
-    <p class="reveal-text" id="revealText">I'm Ayesha Ramzan — an AI &amp; full-stack developer who builds software that can <span class="it">talk,</span> listen and get real work done.</p>
+    <h2 class="reveal-text" id="revealText">I'm Ayesha Ramzan — an AI &amp; full-stack developer who builds software that can <span class="it">talk,</span> listen and get real work done.</h2>
     <div class="about-body">
       <p>I'm an <strong>AI Engineer</strong> and <strong>Full-Stack Developer</strong>. I design <strong>agentic AI systems</strong> — assistants that understand a request, decide the next step, call tools and APIs, and finish the task on their own — and wrap them in fast, clean products people enjoy using.</p>
       <p>On the <strong>frontend</strong> I build responsive interfaces with React, Next.js and TypeScript. On the <strong>backend</strong> I work mainly in <strong>Python</strong> — Flask and FastAPI services, LLM integrations, automation and data pipelines — with Node.js, PostgreSQL and Docker when the project needs them. From idea to deployment, I handle the whole stack.</p>
     </div>
     <div class="about-meta">
-      <div class="meta-card"><span class="mi">01</span><h4>Agentic AI</h4><p>AI agents that plan, use tools and APIs, remember context and complete multi-step tasks.</p></div>
-      <div class="meta-card"><span class="mi">02</span><h4>AI Engineering</h4><p>LLM-powered chatbots, voice assistants and automations — prompt design, integration and deployment.</p></div>
-      <div class="meta-card"><span class="mi">03</span><h4>Full-Stack</h4><p>Frontend in React, Next.js and TypeScript; backend in Python (Flask, FastAPI) and Node.js.</p></div>
-      <div class="meta-card"><span class="mi">04</span><h4>How I work</h4><p>Clean, tested code, small reviewed changes, and products shipped to real users — not left as demos.</p></div>
+      <div class="meta-card"><span class="mi">01</span><h3>Agentic AI</h3><p>AI agents that plan, use tools and APIs, remember context and complete multi-step tasks.</p></div>
+      <div class="meta-card"><span class="mi">02</span><h3>AI Engineering</h3><p>LLM-powered chatbots, voice assistants and automations — prompt design, integration and deployment.</p></div>
+      <div class="meta-card"><span class="mi">03</span><h3>Full-Stack</h3><p>Frontend in React, Next.js and TypeScript; backend in Python (Flask, FastAPI) and Node.js.</p></div>
+      <div class="meta-card"><span class="mi">04</span><h3>How I work</h3><p>Clean, tested code, small reviewed changes, and products shipped to real users — not left as demos.</p></div>
     </div>
   </div>
 </section>
@@ -509,7 +527,7 @@ h1,h2,h3,.reveal-text,.contact h2{font-weight:900!important;letter-spacing:-.045
         <div class="top"><span class="num">01</span><div class="tags"><span>Company project</span><span>Next.js</span></div></div>
         <div class="media"><img src="assets/gtos.webp" alt="GTOS employee app welcome screen on desktop and mobile" loading="lazy"></div>
         <div class="desc"><h3>GTOS — Gobind Trades Operations System</h3>Workforce platform for a construction company. I built Employee PWA features: GPS-geofenced clock-in, building/floor/task selection, a tasks workspace and Review &amp; Clock Out — bilingual in English and Punjabi, backed by end-to-end tests.</div>
-        <div class="links"><a class="pill live" href="https://gtos-employee.srv1763060.hstgr.cloud/welcome" target="_blank" rel="noopener">Live ↗</a><span class="pill" style="cursor:default">Next.js · Fastify · PostgreSQL · Redis</span></div>
+        <div class="links"><a class="pill live" href="https://gtos-employee.srv1763060.hstgr.cloud/welcome" target="_blank" rel="noopener">Live ↗</a><span class="pill static">Next.js · Fastify · PostgreSQL · Redis</span></div>
       </article>
       <article class="pcard" data-view>
         <div class="top"><span class="num">02</span><div class="tags"><span>Python</span><span>WhatsApp</span></div></div>
@@ -531,7 +549,7 @@ h1,h2,h3,.reveal-text,.contact h2{font-weight:900!important;letter-spacing:-.045
       </article>
       <article class="pcard" data-view>
         <div class="top"><span class="num">05</span><div class="tags"><span>TypeScript</span><span>Landing page</span></div></div>
-        <div class="media"><video src="assets/mealio.mp4" poster="assets/mealio.jpg" muted loop playsinline preload="none" data-autoplay></video></div>
+        <div class="media"><video src="assets/mealio.mp4" poster="assets/mealio.webp" muted loop playsinline preload="none" data-autoplay></video></div>
         <div class="desc"><h3>Mealio — Bite &amp; Bliss</h3>Halal Pakistani food &amp; seafood delivery landing page with restaurants, a full menu and WhatsApp ordering.</div>
         <div class="links"><a class="pill" href="https://github.com/Ayesha-Ramzan/Mealio_Bite-_Bliss" target="_blank" rel="noopener">Code ↗</a></div>
       </article>
@@ -543,7 +561,7 @@ h1,h2,h3,.reveal-text,.contact h2{font-weight:900!important;letter-spacing:-.045
       </article>
       <article class="pcard" data-view>
         <div class="top"><span class="num">07</span><div class="tags"><span>Python</span><span>CLI</span></div></div>
-        <div class="media tall"><video src="assets/terminal-beats.mp4" poster="assets/terminal-beats.jpg" muted loop playsinline preload="none" data-autoplay></video></div>
+        <div class="media tall"><video src="assets/terminal-beats.mp4" poster="assets/terminal-beats.webp" muted loop playsinline preload="none" data-autoplay></video></div>
         <div class="desc"><h3>Terminal Beats</h3>Plays music in the background and types the lyrics out live in your terminal, line by line.</div>
         <div class="links"><a class="pill" href="https://github.com/Ayesha-Ramzan/Terminal_Beats" target="_blank" rel="noopener">Code ↗</a></div>
       </article>
@@ -552,7 +570,8 @@ h1,h2,h3,.reveal-text,.contact h2{font-weight:900!important;letter-spacing:-.045
 </section>
 
 <!-- SERVICES -->
-<section class="services" id="services">
+<section class="services" id="services" aria-labelledby="svcTitle">
+  <h2 id="svcTitle" class="sr-only">Services</h2>
   <div class="svc-marquee" aria-hidden="true"><div class="t">
     <span class="f">Services</span><b>—</b><span>Services</span><b>—</b><span class="f">Services</span><b>—</b><span>Services</span><b>—</b>
     <span class="f">Services</span><b>—</b><span>Services</span><b>—</b><span class="f">Services</span><b>—</b><span>Services</span><b>—</b>
@@ -562,7 +581,7 @@ h1,h2,h3,.reveal-text,.contact h2{font-weight:900!important;letter-spacing:-.045
     <div class="svc"><span class="n">02</span><div><h3>AI Engineering</h3><ul><li>LLM chatbots</li><li>Voice assistants</li><li>AI automation</li></ul></div><div class="thumb"><img src="assets/wa-order.webp" alt="" loading="lazy"></div></div>
     <div class="svc"><span class="n">03</span><div><h3>Full-Stack Development</h3><ul><li>End-to-end web apps</li><li>APIs &amp; databases</li><li>Deployment</li></ul></div><div class="thumb"><img src="assets/gtos.webp" alt="" loading="lazy"></div></div>
     <div class="svc"><span class="n">04</span><div><h3>Frontend Development</h3><ul><li>React &amp; Next.js</li><li>Responsive UI</li><li>Landing pages &amp; dashboards</li></ul></div><div class="thumb"><img src="assets/habit-summary.webp" alt="" loading="lazy"></div></div>
-    <div class="svc"><span class="n">05</span><div><h3>Backend with Python</h3><ul><li>Flask &amp; FastAPI</li><li>REST APIs</li><li>Scripts &amp; data pipelines</li></ul></div><div class="thumb"><img src="assets/terminal-beats.jpg" alt="" loading="lazy"></div></div>
+    <div class="svc"><span class="n">05</span><div><h3>Backend with Python</h3><ul><li>Flask &amp; FastAPI</li><li>REST APIs</li><li>Scripts &amp; data pipelines</li></ul></div><div class="thumb"><img src="assets/terminal-beats.webp" alt="" loading="lazy"></div></div>
   </div>
 </section>
 
@@ -575,7 +594,7 @@ h1,h2,h3,.reveal-text,.contact h2{font-weight:900!important;letter-spacing:-.045
     </div>
     <div class="lab-grid">
       <article class="lcard" data-view>
-        <div class="media"><div class="typo t1"><small>Python · Wake word</small><div class="wave"><i style="animation-delay:-.1s"></i><i style="animation-delay:-.5s"></i><i style="animation-delay:-.3s"></i><i style="animation-delay:-.8s"></i><i style="animation-delay:-.2s"></i><i style="animation-delay:-.6s"></i><i style="animation-delay:-.4s"></i></div><b>J.A.R.V.I.S.</b></div></div>
+        <div class="media"><div class="typo t1"><small>Python · Wake word</small><div class="wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><b>J.A.R.V.I.S.</b></div></div>
         <h3>J.A.R.V.I.S. — AI Voice Assistant</h3>
         <p>A privacy-first, wake-word voice assistant that actually controls the system — WhatsApp, mail, media, files and apps.</p>
         <div class="links"><a class="pill" href="https://github.com/Ayesha-Ramzan/J.A.R.V.I.S.-AI-Voice-Assistant" target="_blank" rel="noopener">Code ↗</a></div>
@@ -605,7 +624,7 @@ h1,h2,h3,.reveal-text,.contact h2{font-weight:900!important;letter-spacing:-.045
         <div class="links"><a class="pill" href="https://github.com/Ayesha-Ramzan/wa-auto-reply-bot" target="_blank" rel="noopener">Code ↗</a></div>
       </article>
       <article class="lcard" data-view>
-        <div class="media"><video src="assets/turtle.mp4" poster="assets/turtle.jpg" muted loop playsinline preload="none" data-autoplay></video></div>
+        <div class="media"><video src="assets/turtle.mp4" poster="assets/turtle.webp" muted loop playsinline preload="none" data-autoplay></video></div>
         <h3>Turtle Python Art</h3>
         <p>Generative flowers and drawings with Python's Turtle library — learning loops and geometry by drawing.</p>
         <div class="links"><a class="pill" href="https://github.com/Ayesha-Ramzan/Turtle_Python" target="_blank" rel="noopener">Code ↗</a></div>
@@ -618,7 +637,7 @@ h1,h2,h3,.reveal-text,.contact h2{font-weight:900!important;letter-spacing:-.045
 <section class="stack">
   <div class="wrap">
     <div class="stack-box">
-      <div><span class="eyebrow">Toolbox</span><h2 style="margin-top:14px">What I build <span class="it">with.</span></h2></div>
+      <div><span class="eyebrow">Toolbox</span><h2 class="mt-14">What I build <span class="it">with.</span></h2></div>
       <div class="stack-chips">
         <span>Python</span><span>JavaScript</span><span>TypeScript</span><span>HTML &amp; CSS</span><span>Flask</span><span>Node.js</span><span>LLM APIs</span><span>WhatsApp (Baileys)</span><span>Chart.js</span><span>SQLite</span><span>Docker</span><span>Next.js &amp; React</span><span>Fastify</span><span>PostgreSQL</span><span>Redis</span><span>Playwright E2E</span><span>Vercel</span><span>Render</span><span>Git &amp; GitHub</span>
       </div>
@@ -629,10 +648,10 @@ h1,h2,h3,.reveal-text,.contact h2{font-weight:900!important;letter-spacing:-.045
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="wrap">
-    <span class="eyebrow" style="color:rgba(250,246,241,.6)">Contact</span>
-    <h2 style="margin-top:20px">Let's build<br>something <span class="it">smart.</span></h2>
+    <span class="eyebrow on-dark">Contact</span>
+    <h2 class="mt-20">Let's build<br>something <span class="it">smart.</span></h2>
     <div class="contact-row">
-      <button class="mail" id="mailBtn" data-mail="ayeshazubram@gmail.com" data-link>ayeshazubram@gmail.com <span>↗</span></button>
+      <button type="button" class="mail" id="mailBtn" data-mail="ayeshazubram@gmail.com" data-link>ayeshazubram@gmail.com <span>↗</span></button>
       <div class="big-soc">
         <a href="https://github.com/Ayesha-Ramzan" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>GitHub</a>
         <a href="https://www.linkedin.com/in/ayesha-ramzan-9632a83ba/" target="_blank" rel="noopener"><svg><use href="#i-in"/></svg>LinkedIn</a>
@@ -659,15 +678,15 @@ h1,h2,h3,.reveal-text,.contact h2{font-weight:900!important;letter-spacing:-.045
       </div>
     </div>
     <div class="f-col">
-      <h5>Quick links</h5>
+      <h2 class="f-h">Quick links</h2>
       <ul class="f-links"><li><a href="#top">Home</a></li><li><a href="#about">About</a></li><li><a href="#work">Work</a></li><li><a href="#services">Services</a></li><li><a href="#lab">Lab</a></li><li><a href="#contact">Contact</a></li></ul>
     </div>
     <div class="f-col">
-      <h5>Services</h5>
+      <h2 class="f-h">Services</h2>
       <ul class="f-links"><li><a href="#services">Agentic AI</a></li><li><a href="#services">AI Engineering</a></li><li><a href="#services">Full-Stack Development</a></li><li><a href="#services">Frontend Development</a></li><li><a href="#services">Backend with Python</a></li></ul>
     </div>
     <div class="f-col">
-      <h5>Contact</h5>
+      <h2 class="f-h">Contact</h2>
       <ul class="f-contact">
         <li><svg><use href="#i-mail"/></svg><a href="mailto:ayeshazubram@gmail.com">ayeshazubram@gmail.com</a></li>
         <li><svg><use href="#i-pin"/></svg><span>Pakistan · working remotely</span></li>
@@ -675,7 +694,7 @@ h1,h2,h3,.reveal-text,.contact h2{font-weight:900!important;letter-spacing:-.045
       </ul>
     </div>
     <div class="f-col f-news">
-      <h5>Let's connect</h5>
+      <h2 class="f-h">Let's connect</h2>
       <p>Drop your email and I'll get back to you about your project.</p>
       <form class="f-form" id="fForm"><input type="email" id="fEmail" placeholder="Enter your email" required aria-label="Your email"><button type="submit" aria-label="Send"><svg><use href="#i-send"/></svg></button></form>
     </div>
@@ -684,10 +703,10 @@ h1,h2,h3,.reveal-text,.contact h2{font-weight:900!important;letter-spacing:-.045
 </footer>
 <div class="toast" id="toast">Email copied ✓</div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
 <script>
-(function(){
+document.addEventListener('DOMContentLoaded', function(){
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
   const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
@@ -697,9 +716,10 @@ h1,h2,h3,.reveal-text,.contact h2{font-weight:900!important;letter-spacing:-.045
   const loader = $('#loader');
   const loaderDone = new Promise(done => {
     const finish = () => { loader.classList.add('out'); document.body.classList.remove('loading'); setTimeout(() => loader.remove(), 1000); setTimeout(done, 350); };
-    if (reduce) { finish(); return; }
+    let seen = false; try { seen = sessionStorage.getItem('introSeen') === '1'; sessionStorage.setItem('introSeen', '1'); } catch {}
+    if (reduce || seen) { finish(); return; }
     const words = ['IDEAS.', 'CODE.', 'AI.', 'IMPACT.'], wEl = $('#lWord'), cEl = $('#lCount'), bEl = $('#lBar');
-    const T = 2300, t0 = performance.now(); let wi = 0;
+    const T = 1500, t0 = performance.now(); let wi = 0;
     (function tick(now){
       const p = Math.min(1, (now - t0) / T), e = 1 - Math.pow(1 - p, 3), n = Math.round(e * 100);
       cEl.textContent = String(n).padStart(3, '0'); bEl.style.width = (e * 100) + '%';
@@ -771,7 +791,7 @@ h1,h2,h3,.reveal-text,.contact h2{font-weight:900!important;letter-spacing:-.045
     }
     requestAnimationFrame(frame);
   }
-  requestAnimationFrame(frame);
+  if (fine) requestAnimationFrame(frame);   // touch screens: no per-frame work
 
   /* autoplay videos only while visible */
   const vio = new IntersectionObserver(es => es.forEach(e => {
@@ -805,7 +825,7 @@ h1,h2,h3,.reveal-text,.contact h2{font-weight:900!important;letter-spacing:-.045
   const words = [...rt.querySelectorAll('.w')];
 
   if (!window.gsap || reduce) {   // no animation library (offline) or reduced motion: show everything
-    words.forEach(w => w.style.opacity = 1);
+    words.forEach(w => w.classList.add('lit'));
     return;
   }
   gsap.registerPlugin(ScrollTrigger);
@@ -825,7 +845,7 @@ h1,h2,h3,.reveal-text,.contact h2{font-weight:900!important;letter-spacing:-.045
   });
 
   /* about text lights up word by word on scroll */
-  gsap.to(words, {opacity:1, stagger:.04, ease:'none', scrollTrigger:{trigger:rt, start:'top 80%', end:'bottom 45%', scrub:true}});
+  ScrollTrigger.create({trigger:rt, start:'top 80%', end:'bottom 45%', onUpdate:self => { const n = Math.round(self.progress * words.length); words.forEach((w,i) => w.classList.toggle('lit', i < n)); }, onLeave:() => words.forEach(w => w.classList.add('lit'))});
   gsap.from('.meta-card', {y:40, opacity:0, stagger:.1, duration:.9, ease:'power3.out', scrollTrigger:{trigger:'.about-meta', start:'top 88%'}});
 
   /* WORKS: cards rise in from their side; giant background text drifts with scroll */
@@ -847,7 +867,7 @@ h1,h2,h3,.reveal-text,.contact h2{font-weight:900!important;letter-spacing:-.045
   gsap.to('.marquee', {xPercent:-4, ease:'none', scrollTrigger:{trigger:'.marquee', start:'top bottom', end:'bottom top', scrub:true}});
 
   addEventListener('load', () => ScrollTrigger.refresh());
-})();
+});
 </script>
 </body>
 </html>
