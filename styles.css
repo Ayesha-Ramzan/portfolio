@@ -553,3 +553,5 @@ fieldset.fld legend{padding:0;margin-bottom:8px}
 @media (max-width:900px){.pg-hero{grid-template-columns:1fr;gap:16px}.proc{grid-template-columns:1fr 1fr}}
 @media (max-width:640px){.proc{grid-template-columns:1fr}}
 .works{position:relative;overflow:clip}
+.services .all-work{margin-top:clamp(36px,5vw,60px)}
+.services .pill-btn{color:var(--ink)}

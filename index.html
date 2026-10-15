@@ -207,6 +207,23 @@
   </div>
 </section>
 
+<!-- SERVICES -->
+<section class="services" id="services" aria-labelledby="svcTitle">
+  <h2 id="svcTitle" class="sr-only">Services</h2>
+  <div class="svc-marquee" aria-hidden="true"><div class="t">
+    <span class="f">Services</span><b>—</b><span>Services</span><b>—</b><span class="f">Services</span><b>—</b><span>Services</span><b>—</b>
+    <span class="f">Services</span><b>—</b><span>Services</span><b>—</b><span class="f">Services</span><b>—</b><span>Services</span><b>—</b>
+  </div></div>
+  <div class="wrap svc-list">
+    <div class="svc"><span class="n">01</span><div><h3>Agentic AI</h3><ul><li>AI agents</li><li>Tool &amp; API calling</li><li>Multi-step workflows</li></ul></div><div class="thumb"><img src="assets/axon.webp" alt="" loading="lazy"></div></div>
+    <div class="svc"><span class="n">02</span><div><h3>AI Engineering</h3><ul><li>LLM chatbots</li><li>Voice assistants</li><li>AI automation</li></ul></div><div class="thumb"><img src="assets/wa-order.webp" alt="" loading="lazy"></div></div>
+    <div class="svc"><span class="n">03</span><div><h3>Full-Stack Development</h3><ul><li>End-to-end web apps</li><li>APIs &amp; databases</li><li>Deployment</li></ul></div><div class="thumb"><img src="assets/gtos.webp" alt="" loading="lazy"></div></div>
+    <div class="svc"><span class="n">04</span><div><h3>Frontend Development</h3><ul><li>React &amp; Next.js</li><li>Responsive UI</li><li>Landing pages &amp; dashboards</li></ul></div><div class="thumb"><img src="assets/habit-summary.webp" alt="" loading="lazy"></div></div>
+    <div class="svc"><span class="n">05</span><div><h3>Backend with Python</h3><ul><li>Flask &amp; FastAPI</li><li>REST APIs</li><li>Scripts &amp; data pipelines</li></ul></div><div class="thumb"><img src="assets/terminal-beats.webp" alt="" loading="lazy"></div></div>
+  </div>
+  <div class="all-work on-dark"><a href="services.html" class="pill-btn">View all services <i>↗</i></a></div>
+</section>
+
 <!-- CTA -->
 <section class="cta-band">
   <div class="wrap cta-in">
@@ -361,7 +378,7 @@ document.addEventListener('DOMContentLoaded', function(){
     loaderDone.then(() => document.body.classList.add('ready'));
     $$('[data-count]').forEach(el => el.textContent = el.dataset.count + (el.dataset.suffix || ''));
     const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {rootMargin:'0px 0px -8% 0px'});
-    $$('.pcard,.meta-card,.works-head h2,.cta-band h2').forEach(el => io.observe(el));
+    $$('.pcard,.meta-card,.svc,.works-head h2,.cta-band h2').forEach(el => io.observe(el));
     const rio = new IntersectionObserver(es => { if (es[0].isIntersecting) { words.forEach((w,i) => setTimeout(() => w.classList.add('lit'), i * 40)); rio.disconnect(); } }, {threshold:.35});
     rio.observe(rt);
   }
@@ -405,6 +422,7 @@ document.addEventListener('DOMContentLoaded', function(){
     gsap.utils.toArray('.pcard').forEach((c,i) => {
       gsap.from(c, {y:90, x: innerWidth > 900 ? (i%2 ? -60 : 60) : 0, opacity:0, duration:1.1, ease:'power3.out', scrollTrigger:{trigger:c, start:'top 88%'}});
     });
+    gsap.utils.toArray('.svc').forEach((el,i) => gsap.from(el, {x: i%2 ? 80 : -80, opacity:0, duration:1, ease:'power3.out', scrollTrigger:{trigger:el, start:'top 90%'}}));
     gsap.to('.wb-row.r1', {xPercent:-12, ease:'none', scrollTrigger:{trigger:'.works', start:'top bottom', end:'bottom top', scrub:true}});
     gsap.fromTo('.wb-row.r2', {xPercent:-12}, {xPercent:0, ease:'none', scrollTrigger:{trigger:'.works', start:'top bottom', end:'bottom top', scrub:true}});
 
