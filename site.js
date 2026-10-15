@@ -40,6 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
   /* services rows: tap to open on touch screens */
   $$('.svc').forEach(s => s.addEventListener('click', () => { if (!fine) { $$('.svc').forEach(o => o !== s && o.classList.remove('on')); s.classList.toggle('on'); } }));
 
+  /* skill bars fill when they scroll into view */
+  const skio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('go'); skio.unobserve(e.target); } }), {threshold:.3});
+  $$('.sk-grid').forEach(g => skio.observe(g));
+
   /* count-up stats */
   const cio = new IntersectionObserver(es => es.forEach(e => {
     if (!e.isIntersecting) return; cio.unobserve(e.target);
