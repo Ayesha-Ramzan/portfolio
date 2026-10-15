@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500&display=swap"></noscript>
-<link rel="stylesheet" href="styles.css?v=19">
+<link rel="stylesheet" href="styles.css?v=20">
 </head>
 <body class="loading">
 <div class="loader" id="loader" aria-hidden="true">
@@ -467,6 +467,24 @@ document.addEventListener('DOMContentLoaded', function(){
   })(rt);
   const words = [...rt.querySelectorAll('.w')];
 
+  /* scroll-linked reveal: each word goes from blurred & faded to sharp as you scroll (and back when scrolling up) */
+  if (!reduce) {
+    let ticking = false;
+    const paint = () => {
+      ticking = false;
+      const r = rt.getBoundingClientRect(), vh = innerHeight;
+      const p = Math.min(1, Math.max(0, (vh * 0.9 - r.top) / (vh * 0.55)));
+      const n = p * words.length;
+      words.forEach((w, i) => {
+        const t = Math.min(1, Math.max(0, n - i));          // 0 → 1 for this word
+        w.style.setProperty('--t', t.toFixed(3));
+      });
+    };
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(paint); } }, {passive:true});
+    addEventListener('resize', paint);
+    paint();
+  }
+
   if (reduce) { words.forEach(w => w.classList.add('lit')); loaderDone.then(() => document.body.classList.add('ready')); return; }
 
   /* phones & small screens: light CSS animations driven by IntersectionObserver, no animation library */
@@ -476,8 +494,6 @@ document.addEventListener('DOMContentLoaded', function(){
     $$('[data-count]').forEach(el => el.textContent = el.dataset.count + (el.dataset.suffix || ''));
     const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {rootMargin:'0px 0px -8% 0px'});
     $$('.pcard,.ab2-points li,.ab2-card,.pr-list li,.faq-item,.svc,.works-head h2,.cta-band h2').forEach(el => io.observe(el));
-    const rio = new IntersectionObserver(es => { if (es[0].isIntersecting) { words.forEach((w,i) => setTimeout(() => w.classList.add('lit'), i * 40)); rio.disconnect(); } }, {threshold:.35});
-    rio.observe(rt);
   }
   if (!fine || innerWidth < 900) { lite(); return; }
 
@@ -512,7 +528,6 @@ document.addEventListener('DOMContentLoaded', function(){
   const whenIdle = cb => ('requestIdleCallback' in window) ? requestIdleCallback(cb, {timeout:1200}) : setTimeout(cb, 200);
   loaderDone.then(() => whenIdle(() => {
     /* about text lights up word by word on scroll */
-    ScrollTrigger.create({trigger:rt, start:'top 80%', end:'bottom 45%', onUpdate:self => { const n = Math.round(self.progress * words.length); words.forEach((w,i) => w.classList.toggle('lit', i < n)); }, onLeave:() => words.forEach(w => w.classList.add('lit'))});
     gsap.from('.ab2-points li,.ab2-card', {y:40, opacity:0, stagger:.1, duration:.9, ease:'power3.out', scrollTrigger:{trigger:'.ab2', start:'top 80%'}});
 
     /* WORKS: cards rise in from their side; giant background text drifts with scroll */

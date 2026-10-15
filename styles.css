@@ -702,3 +702,7 @@ body.lite .faq-item{opacity:0;transform:translateY(24px);transition:opacity .7s 
   .hero-grid{grid-template-columns:1fr}
   .stage{margin:30px auto 0;width:min(100%,460px)}
 }
+/* about heading: blurred → sharp word by word on scroll */
+.reveal-text .w{--t:0;opacity:calc(.18 + .82 * var(--t))!important;filter:blur(calc((1 - var(--t)) * 8px));color:color-mix(in srgb,var(--ink) calc(var(--t) * 100%),#A9A49C);transition:none;will-change:filter,opacity}
+.reveal-text .w.lit{--t:1}
+@media (prefers-reduced-motion:reduce){.reveal-text .w{--t:1}}
