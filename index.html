@@ -272,7 +272,7 @@ section{position:relative}
 .toast.on{transform:translate(-50%,0)}
 
 /* PRELOADER */
-.loader{position:fixed;inset:0;z-index:500;background:var(--aurora);color:#FAFAFA;display:flex;align-items:center;justify-content:center;transition:transform .95s cubic-bezier(.76,0,.24,1)}
+.loader{position:fixed;inset:0;z-index:500;contain:strict;background:var(--aurora);color:#FAFAFA;display:flex;align-items:center;justify-content:center;transition:transform .95s cubic-bezier(.76,0,.24,1)}
 .loader.out{transform:translateY(-100%)}
 .loader .l-logo{position:absolute;left:clamp(20px,4vw,56px);top:clamp(20px,4vw,48px)}
 .loader .l-logo b{display:block;font-family:var(--serif);font-style:italic;font-weight:600;font-size:26px;letter-spacing:-.02em}
@@ -281,7 +281,7 @@ section{position:relative}
 .l-word{font-family:var(--sans);font-weight:800;font-size:clamp(48px,8.5vw,128px);letter-spacing:-.05em;line-height:1;overflow:hidden;padding:.05em 0}
 .l-word span{display:inline-block;animation:lw .5s cubic-bezier(.2,.8,.2,1) both}
 @keyframes lw{from{transform:translateY(105%);opacity:0}to{transform:none;opacity:1}}
-.l-count{position:absolute;right:clamp(20px,4vw,56px);bottom:clamp(14px,3vw,36px);font-family:var(--sans);font-weight:800;font-size:clamp(60px,10vw,150px);letter-spacing:-.06em;line-height:1;font-variant-numeric:tabular-nums}
+.l-count{contain:layout paint;min-width:3.2ch;text-align:right;position:absolute;right:clamp(20px,4vw,56px);bottom:clamp(14px,3vw,36px);font-family:var(--sans);font-weight:800;font-size:clamp(60px,10vw,150px);letter-spacing:-.06em;line-height:1;font-variant-numeric:tabular-nums}
 .l-bar{position:absolute;left:0;bottom:0;height:3px;width:100%;transform:scaleX(0);transform-origin:left;will-change:transform;background:var(--red)}
 body.loading{overflow:hidden}
 
@@ -731,7 +731,7 @@ document.addEventListener('DOMContentLoaded', function(){
     const T = 1500, t0 = performance.now(); let wi = 0;
     (function tick(now){
       const p = Math.min(1, (now - t0) / T), e = 1 - Math.pow(1 - p, 3), n = Math.round(e * 100);
-      if (cEl.textContent !== String(n).padStart(3, '0')) cEl.textContent = String(n).padStart(3, '0'); bEl.style.transform = 'scaleX(' + e + ')';
+      if (now - (tick.last || 0) > 60 || p === 1) { tick.last = now; cEl.textContent = String(n).padStart(3, '0'); } bEl.style.transform = 'scaleX(' + e + ')';
       const w = Math.min(words.length - 1, Math.floor(p * words.length));
       if (w !== wi) { wi = w; wEl.innerHTML = '<span>' + words[w] + '</span>'; }
       p < 1 ? requestAnimationFrame(tick) : setTimeout(finish, 250);
