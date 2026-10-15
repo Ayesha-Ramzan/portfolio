@@ -706,3 +706,21 @@ body.lite .faq-item{opacity:0;transform:translateY(24px);transition:opacity .7s 
 .reveal-text .w{--t:0;opacity:calc(.18 + .82 * var(--t))!important;filter:blur(calc((1 - var(--t)) * 8px));color:color-mix(in srgb,var(--ink) calc(var(--t) * 100%),#A9A49C);transition:none;will-change:filter,opacity}
 .reveal-text .w.lit{--t:1}
 @media (prefers-reduced-motion:reduce){.reveal-text .w{--t:1}}
+
+/* hero: 3 glass tags in light 3D */
+.spin-badge{display:none}
+.stage{perspective:900px}
+.tag3d{--px:0px;--py:0px;position:absolute;z-index:4;display:flex;align-items:center;gap:9px;padding:11px 18px 11px 14px;border-radius:14px;font-size:14px;font-weight:700;letter-spacing:-.01em;color:var(--ink);
+  background:linear-gradient(145deg,rgba(255,255,255,.95),rgba(255,255,255,.62));border:1px solid rgba(255,255,255,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 -2px 0 rgba(38,37,34,.06) inset,0 18px 34px -10px rgba(38,37,34,.28),0 4px 10px rgba(38,37,34,.06);
+  transform-style:preserve-3d;white-space:nowrap;animation:tagfloat 6s ease-in-out infinite}
+.tag3d::after{content:'';position:absolute;left:10%;right:10%;bottom:-14px;height:10px;border-radius:50%;background:radial-gradient(closest-side,rgba(38,37,34,.22),transparent);filter:blur(3px);transform:translateZ(-20px)}
+.t3-dot{width:9px;height:9px;border-radius:50%;background:var(--red);box-shadow:0 0 0 4px rgba(214,31,44,.13),0 0 12px rgba(240,74,74,.6)}
+.tag3d.t1{left:-6%;top:28%;--ry:18deg;--rx:6deg}
+.tag3d.t2{right:-4%;top:44%;--ry:-18deg;--rx:4deg;animation-delay:-2s}
+.tag3d.t2 .t3-dot{background:var(--ink);box-shadow:0 0 0 4px rgba(38,37,34,.1)}
+.tag3d.t3{left:-2%;bottom:8%;--ry:14deg;--rx:-6deg;animation-delay:-4s}
+.tag3d.t3 .t3-dot{background:#F4A9B8;box-shadow:0 0 0 4px rgba(244,169,184,.3)}
+@keyframes tagfloat{0%,100%{transform:translate3d(var(--px),var(--py),0) rotateY(var(--ry)) rotateX(var(--rx))}50%{transform:translate3d(var(--px),calc(var(--py) - 9px),0) rotateY(var(--ry)) rotateX(var(--rx))}}
+@media (max-width:640px){.tag3d{font-size:12.5px;padding:9px 14px 9px 11px}.tag3d.t1{left:0}.tag3d.t2{right:0}}
+@media (prefers-reduced-motion:reduce){.tag3d{animation:none;transform:rotateY(var(--ry)) rotateX(var(--rx))}}

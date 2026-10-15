@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500&display=swap"></noscript>
-<link rel="stylesheet" href="styles.css?v=21">
+<link rel="stylesheet" href="styles.css?v=22">
 </head>
 <body class="loading">
 <div class="loader" id="loader" aria-hidden="true">
@@ -118,13 +118,12 @@
       <div class="glow" aria-hidden="true"></div>
       <div class="orbit o1" aria-hidden="true"><i></i></div>
       <div class="orbit o2" aria-hidden="true"><i></i><i></i></div>
-      <a href="about.html" class="spin-badge" aria-label="About Ayesha Ramzan">
-        <svg viewBox="0 0 120 120" aria-hidden="true"><defs><path id="circ" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs><text><textPath href="#circ" textLength="286" lengthAdjust="spacing">AI ENGINEER • FULL-STACK DEVELOPER •</textPath></text></svg>
-        <span>↗</span>
-      </a>
             <div class="face" id="face">
         <img src="assets/avatar.webp" alt="Illustrated portrait of Ayesha Ramzan" width="460" height="460" fetchpriority="high">
               </div>
+      <div class="tag3d t1" data-depth="16"><span class="t3-dot"></span>Agentic AI</div>
+      <div class="tag3d t2" data-depth="-20"><span class="t3-dot"></span>LLM Apps</div>
+      <div class="tag3d t3" data-depth="12"><span class="t3-dot"></span>Full-Stack</div>
       <div class="laptop" id="laptop">
         <svg viewBox="0 0 400 210" aria-hidden="true">
           <defs>
@@ -248,7 +247,7 @@
   <div class="wrap pr-grid">
     <div class="pr-head">
       <span class="eyebrow">Working with me</span>
-      <h2>Clear process.<br>Honest updates.<br><span class="it">No surprises.</span></h2>
+      <h2 class="reveal-text">Clear process.<br>Honest updates.<br><span class="it">No surprises.</span></h2>
       <p>Whether it's a small automation or a full product, this is what you get every time.</p>
       <a href="contact.html" class="pill-btn red">Start a project <i>↗</i></a>
     </div>
@@ -266,7 +265,7 @@
   <div class="wrap faq-grid">
     <div class="faq-head">
       <span class="eyebrow">FAQ</span>
-      <h2>Questions,<br><span class="it">answered.</span></h2>
+      <h2 class="reveal-text">Questions,<br><span class="it">answered.</span></h2>
       <p>The things people usually ask before we start. Something else on your mind? Just ask — I reply within a day.</p>
       <div class="faq-card">
         <img src="assets/avatar.webp" alt="" width="44" height="44" loading="lazy">
@@ -401,7 +400,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
   /* portrait: head tilt + eyes follow the cursor */
   const face = $('#face'), laptop = $('#laptop'), stage = $('#stage');
-  const chips = $$('.chip');
+  const chips = $$('.chip,.tag3d');
 
   let tx = 0, ty = 0, cx = 0, cy = 0, idle = 0;
   function target(){
@@ -414,6 +413,7 @@ document.addEventListener('DOMContentLoaded', function(){
   function frame(){
     target();
     cx = lerp(cx, tx, 0.08); cy = lerp(cy, ty, 0.08);
+    if (!reduce) chips.forEach(c => { const d = +c.dataset.depth; c.style.setProperty('--px', (cx*d).toFixed(1)+'px'); c.style.setProperty('--py', (cy*d*0.6).toFixed(1)+'px'); });
     if (fine) {
       arrow.style.transform = `translate(${mx}px,${my}px)`;
       // dots only while the cursor is moving; they fade and fold back into the arrow when it stops
@@ -453,28 +453,31 @@ document.addEventListener('DOMContentLoaded', function(){
 
   /* word-by-word reveal text */
   const rt = $('#revealText');
-  (function split(node){
+  function split(node){
     [...node.childNodes].forEach(n => {
       if (n.nodeType === 3) {
         const f = document.createDocumentFragment();
         n.textContent.split(/(\s+)/).forEach(p => { if (!p) return; if (/^\s+$/.test(p)) f.append(p); else { const s = document.createElement('span'); s.className = 'w'; s.textContent = p; f.append(s); } });
         n.replaceWith(f);
-      } else if (n.nodeType === 1) { n.classList.add('w'); }
+      } else if (n.nodeType === 1 && n.tagName !== 'BR') { n.classList.add('w'); }
     });
-  })(rt);
+  }
+  split(rt);
+  $$('.reveal-text').forEach(el => { if (el !== rt) split(el); });
   const words = [...rt.querySelectorAll('.w')];
 
   /* scroll-linked reveal: each word goes from blurred & faded to sharp as you scroll (and back when scrolling up) */
   if (!reduce) {
     let ticking = false;
+    const groups = $$('.reveal-text').map(el => ({el, ws:[...el.querySelectorAll('.w')]}));
     const paint = () => {
       ticking = false;
-      const r = rt.getBoundingClientRect(), vh = innerHeight;
-      const p = Math.min(1, Math.max(0, (vh * 0.9 - r.top) / (vh * 0.55)));
-      const n = p * words.length;
-      words.forEach((w, i) => {
-        const t = Math.min(1, Math.max(0, n - i));          // 0 → 1 for this word
-        w.style.setProperty('--t', t.toFixed(3));
+      const vh = innerHeight;
+      groups.forEach(({el, ws}) => {
+        const r = el.getBoundingClientRect();
+        if (r.bottom < -vh || r.top > vh * 2) return;
+        const n = Math.min(1, Math.max(0, (vh * 0.9 - r.top) / (vh * 0.55))) * ws.length;
+        ws.forEach((w, i) => w.style.setProperty('--t', Math.min(1, Math.max(0, n - i)).toFixed(3)));
       });
     };
     addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(paint); } }, {passive:true});
@@ -482,7 +485,7 @@ document.addEventListener('DOMContentLoaded', function(){
     paint();
   }
 
-  if (reduce) { words.forEach(w => w.classList.add('lit')); loaderDone.then(() => document.body.classList.add('ready')); return; }
+  if (reduce) { $$('.reveal-text .w').forEach(w => w.classList.add('lit')); loaderDone.then(() => document.body.classList.add('ready')); return; }
 
   /* phones & small screens: light CSS animations driven by IntersectionObserver, no animation library */
   function lite(){
@@ -531,7 +534,7 @@ document.addEventListener('DOMContentLoaded', function(){
     gsap.utils.toArray('.pcard').forEach((c,i) => {
       gsap.from(c, {y:90, x: innerWidth > 900 ? (i%2 ? -60 : 60) : 0, opacity:0, duration:1.1, ease:'power3.out', scrollTrigger:{trigger:c, start:'top 88%'}});
     });
-    gsap.utils.toArray('.svc').forEach((el,i) => gsap.from(el, {x: i%2 ? 80 : -80, opacity:0, duration:1, ease:'power3.out', scrollTrigger:{trigger:el, start:'top 90%'}}));
+    gsap.utils.toArray('.svc').forEach(el => gsap.from(el, {y:50, opacity:0, filter:'blur(8px)', duration:1.3, ease:'power2.out', scrollTrigger:{trigger:el, start:'top 92%'}}));
     gsap.from('.pr-list li', {y:40, opacity:0, stagger:.1, duration:.9, ease:'power3.out', scrollTrigger:{trigger:'.pr-list', start:'top 82%'}});
     gsap.from('.faq-item', {y:30, opacity:0, stagger:.06, duration:.8, ease:'power3.out', scrollTrigger:{trigger:'.faq-list', start:'top 85%'}});
     gsap.to('.wb-row.r1', {xPercent:-12, ease:'none', scrollTrigger:{trigger:'.works', start:'top bottom', end:'bottom top', scrub:true}});
