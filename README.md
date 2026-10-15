@@ -2,7 +2,7 @@
 
 Personal portfolio of **Ayesha Ramzan**, AI Engineer & Full-Stack Developer.
 
-**Live:** https://ayesha-ramzan.github.io/portfolio/
+**Live:** https://ayesha-ramzan.vercel.app · https://ayesha-ramzan.github.io/portfolio/
 
 ![Portfolio preview](assets/preview.webp)
 

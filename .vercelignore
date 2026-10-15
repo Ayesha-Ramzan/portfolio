@@ -1,0 +1,6 @@
+index.v*.html
+_t.html
+_unused/
+*.bak
+README.md
+.git
