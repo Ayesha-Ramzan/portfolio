@@ -8,13 +8,15 @@ Personal portfolio of **Ayesha Ramzan**, AI Engineer & Full-Stack Developer.
 
 ## Pages
 
-- **Home** — intro, selected work, services, lab projects and contact
-- **About** — story, toolkit and how I work
+- **Home** — hero, about, featured work, services, how I work, FAQ
+- **About** — story, stats, toolkit and working principles
+- **Work** — all projects, plus experiments from the lab
+- **Services** — what I offer, project process and toolkit
 - **Contact** — project form that opens a pre-filled email
 
 ## Built with
 
-Plain HTML, CSS and JavaScript — no build step. GSAP powers the desktop scroll animations; phones get lightweight CSS animations instead.
+Plain HTML, CSS and JavaScript — no build step. GSAP powers the desktop scroll animations; phones get lightweight CSS animations instead. Deployed on Vercel and GitHub Pages.
 
 - Responsive from 320px phones to wide desktops
 - Accessible (Lighthouse accessibility 100), SEO 100, best practices 100
