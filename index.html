@@ -122,10 +122,7 @@ img,video{display:block;max-width:100%}
 .ring-deco{position:absolute;inset:3% 3% 11%;border-radius:50%;border:1.5px dashed rgba(10,13,24,.35);animation:spin 40s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .face{position:absolute;left:8%;right:8%;top:2%;aspect-ratio:1;transform-style:preserve-3d;will-change:transform}
-.face img,.face .face-gl{width:100%;height:100%;filter:drop-shadow(0 30px 40px rgba(120,60,50,.18))}
-.face .face-gl{position:absolute;inset:0;opacity:0}
-.face.gl-on .face-gl{opacity:1}
-.face.gl-on img{opacity:0}
+.face img{width:100%;height:100%;filter:drop-shadow(0 30px 40px rgba(120,60,50,.18))}
 .laptop{position:absolute;left:14%;right:14%;bottom:0;z-index:3;will-change:transform}
 .laptop svg{width:100%;height:auto;display:block;filter:drop-shadow(0 26px 30px rgba(31,26,34,.22))}
 .chip{position:absolute;z-index:4;display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 14px;font-size:13px;font-weight:700;box-shadow:0 12px 30px rgba(31,26,34,.08);will-change:transform;white-space:nowrap}
@@ -509,10 +506,8 @@ body.lite .in{opacity:1!important;transform:none!important}
 
     <div class="stage" id="stage">
       <div class="ring-deco"></div>
-      <span class="hint">move your cursor ↙</span>
-      <div class="face" id="face">
+            <div class="face" id="face">
         <img src="assets/avatar.webp" alt="Illustrated portrait of Ayesha Ramzan" width="460" height="460" fetchpriority="high">
-        <canvas class="face-gl" width="920" height="920" aria-hidden="true"></canvas>
               </div>
       <div class="laptop" id="laptop">
         <svg viewBox="0 0 400 210" aria-hidden="true">
@@ -804,66 +799,6 @@ document.addEventListener('DOMContentLoaded', function(){
   const face = $('#face'), laptop = $('#laptop'), stage = $('#stage');
   const chips = $$('.chip');
 
-  /* natural look-at: gently warps the real portrait (eyes + head) with WebGL — nothing is drawn on top */
-  const lookAt = (() => {
-    const cv = face.querySelector('.face-gl'), img = face.querySelector('img');
-    let gl; try { gl = cv.getContext('webgl', {premultipliedAlpha:true, alpha:true, antialias:false}); } catch {}
-    if (!gl) return null;
-    const VS = 'attribute vec2 p;varying vec2 uv;void main(){uv=p*.5+.5;uv.y=1.-uv.y;gl_Position=vec4(p,0.,1.);}';
-    const FS = `precision highp float;varying vec2 uv;uniform sampler2D t;uniform vec2 head;uniform float rot;uniform vec2 eye;
-      const vec2 S=vec2(460.);
-      float g(vec2 d,vec2 r){return exp(-dot(d/r,d/r));}
-      void main(){
-        vec2 p=uv*S;
-        float wh=(1.-smoothstep(.62,1.12,length((p-vec2(234.,150.))/vec2(128.,132.))))*smoothstep(292.,238.,p.y);
-        vec2 q=p-vec2(234.,272.);float a=rot*wh;
-        vec2 off=head*wh+vec2(cos(a)*q.x-sin(a)*q.y,sin(a)*q.x+cos(a)*q.y)-q;
-        off+=eye*min(g(p-vec2(210.,152.),vec2(8.6,5.)) + g(p-vec2(259.,152.),vec2(8.6,5.)),1.);
-        gl_FragColor=texture2D(t,clamp((p-off)/S,0.,1.));
-      }`;
-    const sh = (type, src) => { const o = gl.createShader(type); gl.shaderSource(o, src); gl.compileShader(o); return gl.getShaderParameter(o, gl.COMPILE_STATUS) ? o : null; };
-    const v = sh(gl.VERTEX_SHADER, VS), f = sh(gl.FRAGMENT_SHADER, FS); if (!v || !f) return null;
-    const pr = gl.createProgram(); gl.attachShader(pr, v); gl.attachShader(pr, f); gl.linkProgram(pr);
-    if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) return null;
-    gl.useProgram(pr);
-    const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
-    const loc = gl.getAttribLocation(pr, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
-    const uHead = gl.getUniformLocation(pr, 'head'), uRot = gl.getUniformLocation(pr, 'rot'), uEye = gl.getUniformLocation(pr, 'eye');
-    let ready = false, last = '';
-    const src = new Image(); src.src = img.currentSrc || img.src;
-    src.decode().then(() => {
-      const tex = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, tex);
-      gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true);
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, src);
-      [gl.TEXTURE_MIN_FILTER, gl.TEXTURE_MAG_FILTER].forEach(k => gl.texParameteri(gl.TEXTURE_2D, k, gl.LINEAR));
-      [gl.TEXTURE_WRAP_S, gl.TEXTURE_WRAP_T].forEach(k => gl.texParameteri(gl.TEXTURE_2D, k, gl.CLAMP_TO_EDGE));
-      gl.viewport(0, 0, cv.width, cv.height); gl.clearColor(0, 0, 0, 0);
-      ready = true; draw(0, 0, 0, 0, 0); face.classList.add('gl-on');
-    }).catch(() => {});
-    function draw(hx, hy, r, ex, ey){
-      if (!ready) return;
-      const k = [hx, hy, r, ex, ey].map(n => n.toFixed(3)).join();
-      if (k === last) return; last = k;              // nothing moved: skip the GPU work
-      gl.uniform2f(uHead, hx, hy); gl.uniform1f(uRot, r); gl.uniform2f(uEye, ex, ey);
-      gl.clear(gl.COLOR_BUFFER_BIT); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-    }
-    return { draw };
-  })();
-  // eyes react first and faster, the head follows a little later and slower — like a person looking
-  let ex = 0, ey = 0;
-  const look = () => {
-    // irises aim straight at the cursor: direction from the eyes to the pointer, full swing within ~160px
-    let etx = tx, ety = ty;
-    if (mouseSeen) {
-      const r = face.getBoundingClientRect();
-      const dx = mx - (r.left + r.width * 0.508), dy = my - (r.top + r.height * 0.33);
-      const d = Math.hypot(dx, dy) || 1, k = Math.min(1, d / 160);
-      etx = dx / d * k; ety = dy / d * k;
-    }
-    ex = lerp(ex, etx, 0.38); ey = lerp(ey, ety, 0.38);
-    if (lookAt && !reduce) lookAt.draw(cx * 9, cy * 4, cx * 0.055, ex * 4.6, ey * 2.3);
-  };
   let tx = 0, ty = 0, cx = 0, cy = 0, idle = 0;
   function target(){
     const r = face.getBoundingClientRect();
@@ -875,7 +810,6 @@ document.addEventListener('DOMContentLoaded', function(){
   function frame(){
     target();
     cx = lerp(cx, tx, 0.08); cy = lerp(cy, ty, 0.08);
-    look();
     if (fine) {
       arrow.style.transform = `translate(${mx}px,${my}px)`;
       // dots only while the cursor is moving; they fade and fold back into the arrow when it stops
@@ -887,21 +821,6 @@ document.addEventListener('DOMContentLoaded', function(){
     requestAnimationFrame(frame);
   }
   if (fine) requestAnimationFrame(frame);
-  else if (!reduce) {
-    // touch screens: no cursor, so she glances around naturally — only while the hero is on screen
-    let on = false, nextGlance = 0;
-    const glance = now => {
-      if (!on) return;
-      if (now > nextGlance) {
-        const r = Math.random();
-        if (r < .3) { tx = 0; ty = 0; } else { tx = (Math.random() * 1.6 - .8); ty = (Math.random() * .7 - .3); }
-        nextGlance = now + 1800 + Math.random() * 2200;
-      }
-      cx = lerp(cx, tx, 0.05); cy = lerp(cy, ty, 0.05); look();
-      requestAnimationFrame(glance);
-    };
-    new IntersectionObserver(es => { const v = es[0].isIntersecting; if (v && !on) { on = true; requestAnimationFrame(glance); } on = v; }).observe(face);
-  }
 
   /* autoplay videos only while visible */
   const vio = new IntersectionObserver(es => es.forEach(e => {
