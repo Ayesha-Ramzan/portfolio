@@ -21,7 +21,7 @@
 
 ---
 
-## ✨ Highlights
+## Highlights
 
 - **Multi-page site** — Home, About, Work, Services and Contact, each with its own page and a dock-style navigation bar
 - **Motion with purpose** — intro loader, rotating headline, orbit rings around the portrait, blur-to-sharp headings and smooth scroll reveals
@@ -30,7 +30,7 @@
 - **Fully responsive** — tested from 320 px phones to wide desktop screens, with no horizontal scroll
 - **Secure by default** — Content-Security-Policy, Subresource Integrity on third-party scripts, HTTPS everywhere, no stored user data
 
-## 📄 Pages
+## Pages
 
 | Page | What's on it |
 |---|---|
@@ -40,7 +40,7 @@
 | **Services** | Agentic AI, AI engineering, full-stack, frontend and Python backend, plus the project process |
 | **Contact** | Project form that opens a pre-filled email — nothing is stored on the site |
 
-## 🗂️ Project structure
+## Project structure
 
 ```
 portfolio/
@@ -54,7 +54,7 @@ portfolio/
 └── assets/           # Optimised images (WebP) and short MP4 previews
 ```
 
-## 🚀 Run locally
+## Run locally
 
 No build step — it's plain HTML, CSS and JavaScript.
 
@@ -66,12 +66,12 @@ python3 -m http.server 5500
 
 Then open **http://localhost:5500**.
 
-## 🌐 Deployment
+## Deployment
 
 - **Vercel** — production at [ayesha-ramzan.vercel.app](https://ayesha-ramzan.vercel.app)
 - **GitHub Pages** — mirror at [ayesha-ramzan.github.io/portfolio](https://ayesha-ramzan.github.io/portfolio/), updated on every push to `main`
 
-## 📬 Contact
+## Contact
 
 [Portfolio](https://ayesha-ramzan.vercel.app) · [LinkedIn](https://www.linkedin.com/in/ayesha-ramzan-9632a83ba/) · [GitHub](https://github.com/Ayesha-Ramzan) · [Instagram](https://www.instagram.com/ayesh_ramzan786/) · [X](https://x.com/ayesha5044) · ayeshazubram@gmail.com
 
