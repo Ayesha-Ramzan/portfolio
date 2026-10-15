@@ -188,6 +188,8 @@ section{position:relative}
 .tags span::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--rose)}
 .media{border-radius:16px;overflow:hidden;background:var(--bg-2);aspect-ratio:16/10;position:relative}
 .media img,.media video{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.pcard .media:has(> img){aspect-ratio:auto}
+.pcard .media > img{height:auto}
 .media.tall video{object-fit:cover;object-position:center 30%}
 .pcard:hover .media img,.pcard:hover .media video{transform:scale(1.04)}
 .pcard .desc{font-size:14px;color:var(--muted);padding:14px 6px 4px}
@@ -421,7 +423,7 @@ body.lite .in{opacity:1!important;transform:none!important}
     <div class="l-lap"><div class="l-lid"><b>a.</b></div><div class="l-base"></div></div>
     <div class="l-code"><i></i><i></i><i></i></div>
   </div>
-  <div class="l-count"><span id="lCount">0</span><sup>%</sup></div>
+  <div class="l-count"><span id="lCount">1</span><sup>%</sup></div>
   <div class="l-bar" id="lBar"></div>
 </div>
 <script>
@@ -434,9 +436,9 @@ body.lite .in{opacity:1!important;transform:none!important}
     let seen = false; try { seen = sessionStorage.getItem('introSeen') === '1'; sessionStorage.setItem('introSeen', '1'); } catch {}
     if (reduce || seen) { finish(); return; }
     const cEl = document.getElementById('lCount'), bEl = document.getElementById('lBar');
-    const T = 1800, t0 = performance.now();
+    const T = 3000, t0 = performance.now();
     (function tick(now){
-      const p = Math.min(1, (now - t0) / T), e = 1 - Math.pow(1 - p, 3), n = Math.round(e * 100);
+      const p = Math.min(1, (now - t0) / T), e = p < 1 ? 1 - Math.pow(1 - p, 2) : 1, n = Math.max(1, Math.round(e * 100));
       if (now - (tick.last || 0) > 60 || p === 1) { tick.last = now; cEl.textContent = n; } bEl.style.transform = 'scaleX(' + e + ')';
       p < 1 ? requestAnimationFrame(tick) : setTimeout(finish, 250);
     })(t0);
