@@ -818,7 +818,7 @@ document.addEventListener('DOMContentLoaded', function(){
         float wh=(1.-smoothstep(.55,1.15,length((p-vec2(234.,140.))/vec2(100.,112.))))*smoothstep(262.,212.,p.y);
         vec2 q=p-vec2(234.,255.);float a=rot*wh;
         vec2 off=head*wh+vec2(cos(a)*q.x-sin(a)*q.y,sin(a)*q.x+cos(a)*q.y)-q;
-        off+=eye*min(g(p-vec2(210.,152.),vec2(8.,4.8))+g(p-vec2(259.,152.),vec2(8.,4.8)),1.);
+        off+=eye*min(g(p-vec2(210.,152.),vec2(8.6,5.)) + g(p-vec2(259.,152.),vec2(8.6,5.)),1.);
         gl_FragColor=texture2D(t,clamp((p-off)/S,0.,1.));
       }`;
     const sh = (type, src) => { const o = gl.createShader(type); gl.shaderSource(o, src); gl.compileShader(o); return gl.getShaderParameter(o, gl.COMPILE_STATUS) ? o : null; };
@@ -853,8 +853,16 @@ document.addEventListener('DOMContentLoaded', function(){
   // eyes react first and faster, the head follows a little later and slower — like a person looking
   let ex = 0, ey = 0;
   const look = () => {
-    ex = lerp(ex, tx, 0.16); ey = lerp(ey, ty, 0.16);
-    if (lookAt && !reduce) lookAt.draw(cx * 7, cy * 3.5, cx * 0.045, ex * 3.6, ey * 1.7);
+    // irises aim straight at the cursor: direction from the eyes to the pointer, full swing within ~160px
+    let etx = tx, ety = ty;
+    if (mouseSeen) {
+      const r = face.getBoundingClientRect();
+      const dx = mx - (r.left + r.width * 0.508), dy = my - (r.top + r.height * 0.33);
+      const d = Math.hypot(dx, dy) || 1, k = Math.min(1, d / 160);
+      etx = dx / d * k; ety = dy / d * k;
+    }
+    ex = lerp(ex, etx, 0.22); ey = lerp(ey, ety, 0.22);
+    if (lookAt && !reduce) lookAt.draw(cx * 7, cy * 3.5, cx * 0.045, ex * 4.2, ey * 2.1);
   };
   let tx = 0, ty = 0, cx = 0, cy = 0, idle = 0;
   function target(){
