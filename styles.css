@@ -923,3 +923,9 @@ body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
 .glow{left:-26%;right:-26%;top:-22%;filter:blur(22px) saturate(1.35);opacity:1;
   background:conic-gradient(from 0deg,#F4B3A6,#FAD7A8,#EFC2EA,#FFDCC0,#EEA99B,#F7CF98,#F4B3A6)}
 .glow::after{content:'';position:absolute;inset:22%;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.9),rgba(255,255,255,0) 70%)}
+
+/* elegant wordmark */
+.logo,.loader .l-logo b{font-family:'Playfair Display',Georgia,serif!important;font-style:italic!important;font-weight:600!important;letter-spacing:-.01em!important;text-transform:none}
+.f-brand .logo{font-size:34px}
+.loader .l-logo b{font-size:30px}
+.logo b,.loader .l-logo b i{font-style:normal;color:#C98A72!important}
