@@ -4,8 +4,8 @@
 
 **AI Engineer & Full-Stack Developer** · Agentic AI · LLM apps · Web apps
 
-[![Live on Vercel](https://img.shields.io/badge/Live-ayesha--ramzan.vercel.app-6B5BD6?style=for-the-badge&logo=vercel&logoColor=white)](https://ayesha-ramzan.vercel.app)
-[![GitHub Pages](https://img.shields.io/badge/Mirror-GitHub%20Pages-1F1B2E?style=for-the-badge&logo=github&logoColor=white)](https://ayesha-ramzan.github.io/portfolio/)
+[![Live on Vercel](https://img.shields.io/badge/Live-ayesha--ramzan.vercel.app-14B8A0?style=for-the-badge&logo=vercel&logoColor=white)](https://ayesha-ramzan.vercel.app)
+[![GitHub Pages](https://img.shields.io/badge/Mirror-GitHub%20Pages-0F1E1C?style=for-the-badge&logo=github&logoColor=white)](https://ayesha-ramzan.github.io/portfolio/)
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
@@ -15,7 +15,7 @@
 
 <br>
 
-<a href="https://ayesha-ramzan.vercel.app"><img src="assets/preview-iris.webp" alt="Portfolio preview" width="900"></a>
+<a href="https://ayesha-ramzan.vercel.app"><img src="assets/preview-aqua.webp" alt="Portfolio preview" width="900"></a>
 
 </div>
 
